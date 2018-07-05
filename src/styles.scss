@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+// .ngx-contextmenu .dropdown-menu {
+//   border: solid 1px chartreuse;
+//   background-color: darkgreen;
+//   padding: 0;
+// }
+// .ngx-contextmenu li {
+//   display: block;
+//   border-top: solid 1px chartreuse;
+//   text-transform: uppercase;
+//   text-align: center;
+// }
+// .ngx-contextmenu li:first-child {
+//   border-top:none;
+// }
+// .ngx-contextmenu a {
+//   color:chartreuse;
+//   display: block;
+//   padding: 0.5em 1em;
+// }
+// .ngx-contextmenu a:hover {
+//   color:darkgreen;
+//   background-color:chartreuse;
+// }
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ngx-contextmenu.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
