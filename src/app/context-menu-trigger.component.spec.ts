@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContextMenuTriggerComponent } from './context-menu-trigger.component';
+import { ContextMenuTriggerDirective } from './context-menu-trigger.component';
 
 describe('ContextMenuTriggerComponent', () => {
-  let component: ContextMenuTriggerComponent;
-  let fixture: ComponentFixture<ContextMenuTriggerComponent>;
+  let component: ContextMenuTriggerDirective;
+  let fixture: ComponentFixture<ContextMenuTriggerDirective>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContextMenuTriggerComponent ]
+      declarations: [ ContextMenuTriggerDirective ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContextMenuTriggerComponent);
+    fixture = TestBed.createComponent(ContextMenuTriggerDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
