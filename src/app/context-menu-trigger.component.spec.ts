@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContextMenuTriggerDirective } from './context-menu-trigger.component';
+import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 
 describe('ContextMenuTriggerComponent', () => {
   let component: ContextMenuTriggerDirective;

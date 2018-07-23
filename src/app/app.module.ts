@@ -4,16 +4,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ContextMenuTriggerDirective } from './context-menu-trigger.component';
+import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
+import { ContextSubmenuTriggerDirective } from './context-submenu-trigger.directive';
 import { MenuComponent } from './menu.component';
-import { ContextMenuService } from './context-menu-service.service';
 
 @NgModule({
   declarations: [
     ContextMenuTriggerDirective,
+    ContextSubmenuTriggerDirective,
   ],
   exports: [
     ContextMenuTriggerDirective,
+    ContextSubmenuTriggerDirective,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,10 @@ import {
     <a class="dropdown-item" href="#">Action</a>
     <a class="dropdown-item" href="#">Another action</a>
     <div class="dropdown-submenu">
-      <a contextMenuTrigger [subMenu]="true" class="dropdown-item dropdown-toggle" href="#">Something else here</a>
+      <a contextSubmenuTrigger class="dropdown-item dropdown-toggle">Something else here</a>
+    </div>
+    <div class="dropdown-submenu">
+      <a contextSubmenuTrigger class="dropdown-item dropdown-toggle">Something else here</a>
     </div>
     <a class="dropdown-item disabled" href="#">Disabled link</a>
     <div class="dropdown-divider"></div>
@@ -37,6 +40,7 @@ import {
 })
 export class MenuComponent implements OnInit {
   closetimer: any;
+
   @HostListener('mouseover')
   handleMouseover() {
     if (!this.menuPackage.menu.submenu) {
@@ -45,6 +49,7 @@ export class MenuComponent implements OnInit {
     this.menuPackage.menu.isMenuHovered.next(true);
     clearTimeout(this.closetimer);
   }
+
   @HostListener('mouseleave')
   handleMouseleave() {
     if (!this.menuPackage.menu.submenu) {
@@ -55,9 +60,9 @@ export class MenuComponent implements OnInit {
       this.contextMenuService.closeSubMenu(this.menuPackage.menu.id);
     }, 500);
   }
+
   @HostListener('window:click', ['$event'])
   public closeMenu(event: MouseEvent): void {
-    console.log('hello')
     this.contextMenuService.closeAll();
   }
   constructor(
@@ -66,10 +71,9 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.menuPackage);
+    // console.log(this.menuPackage);
   }
   hover($event) {
-    console.log('hover');
     this.contextMenuService.show($event, MenuComponent, true);
   }
 }

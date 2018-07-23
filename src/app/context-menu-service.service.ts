@@ -29,7 +29,7 @@ export class ContextMenuService {
     private _injector: Injector,
   ) {}
 
-  show($event: MouseEvent, menuComponent, submenu = false): ActiveContextMenu {
+  show($event: MouseEvent, menuComponent, submenu = false, level?: number): ActiveContextMenu {
     let target: any;
     if (!submenu) {
       this.closeAll();
@@ -44,6 +44,7 @@ export class ContextMenuService {
         }),
       };
     } else {
+      this.closeAll(level);
       target = $event.target;
     }
     const el = new ElementRef(target);
@@ -126,11 +127,16 @@ export class ContextMenuService {
       isTriggerHovered: new BehaviorSubject(false),
     };
     const menuInjector = new MenuInjector(t, this._injector);
-    const componentPortal = new ComponentPortal(menuComponent, undefined, menuInjector);
+    const componentPortal = new ComponentPortal(
+      menuComponent,
+      undefined,
+      menuInjector,
+    );
     const overlay = this.overlay.create({
       positionStrategy,
       panelClass: 'ngx-contextmenu',
       scrollStrategy: this.scrollStrategy.close(),
+      hasBackdrop: true,
     });
     const component = overlay.attach(componentPortal);
     const res = {
@@ -138,25 +144,49 @@ export class ContextMenuService {
       ...t,
     };
     this.menus.push(res);
-    console.log(this.menus);
+    console.log('SHOW:', res.id);
+    console.log(this.menus[this.menus.length - 1].id)
     return res;
   }
-  closeAll() {
-    for (let index = 0; index < this.menus.length; index++) {
+  getCurrentLevel() {
+    return this.menus.length;
+  }
+  closeAll(idx = 0) {
+    for (let index = idx; index < this.menus.length; index++) {
       const menu = this.menus[index];
-      this.close(menu.overlay, index);
+      menu.overlay.detach();
+      menu.overlay.dispose();
     }
+    this.menus.splice(idx, this.menus.length);
   }
   close(overlay: OverlayRef, menuIndex: number) {
     overlay.detach();
     overlay.dispose();
     this.menus.splice(menuIndex, 1);
   }
-  closeSubMenu(id: number) {
+  closeSubMenu(id: number): void {
     const menuIndex = this.menus.findIndex(n => n.id === id);
+    if (menuIndex === -1 || menuIndex !== this.menus.length - 1) {
+      return;
+    }
+    // make sure we can close the current menu
     const menu = this.menus[menuIndex];
-    if (menu && menu.isMenuHovered.getValue() === false && menu.isTriggerHovered.getValue() === false) {
-      this.close(menu.overlay, menuIndex);
+    if (
+      menu.isMenuHovered.getValue() ||
+      menu.isTriggerHovered.getValue()
+    ) {
+      return;
+    }
+    // close all menus up if possible
+    for (let index = this.menus.length - 1; index >= 1; index--) {
+      const m = this.menus[index];
+      if (
+        !m.isMenuHovered.getValue() && !m.isTriggerHovered.getValue()
+      ) {
+        this.close(m.overlay, index);
+      } else {
+        return;
+      }
     }
   }
 }
@@ -169,9 +199,10 @@ export class MenuInjector implements Injector {
   _menuContext: MenuPackage;
   constructor(
     private _activeContextMenu: ActiveContextMenuSub,
-    private _parentInjector: Injector) {
-      this._menuContext = new MenuPackage(_activeContextMenu);
-    }
+    private _parentInjector: Injector,
+  ) {
+    this._menuContext = new MenuPackage(_activeContextMenu);
+  }
 
   get(token: any, notFoundValue?: any): any {
     if (token === MenuPackage) {
