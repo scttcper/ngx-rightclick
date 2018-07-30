@@ -1,1 +1,5 @@
-<div contextMenuTrigger style="background-color: lightblue; top:0; right:0; left:0;bottom:0;position: fixed;"></div>
+<div style="width: 100%">
+  <div style="border-top: 1px solid #e9eef2;" [contextMenuTrigger]="menu" [menuContext]="i" *ngFor="let i of items">
+    <div style="height: 40px;background-color: black;">{{ i.name }}</div>
+  </div>
+</div>

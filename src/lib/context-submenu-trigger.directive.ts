@@ -1,17 +1,16 @@
-import { HostListener, OnInit, Input, Directive, OnDestroy } from '@angular/core';
-import { OverlayRef } from '@angular/cdk/overlay';
-import { Subject } from 'rxjs';
+import { Directive, HostListener, Input, OnDestroy } from '@angular/core';
 
 import {
-  ContextMenuService,
   ActiveContextMenu,
+  ContextMenuService,
 } from './context-menu-service.service';
-import { MenuComponent } from './menu.component';
 
 @Directive({ selector: '[contextSubmenuTrigger]' })
-export class ContextSubmenuTriggerDirective implements OnInit, OnDestroy {
+export class ContextSubmenuTriggerDirective implements OnDestroy {
   @Input() hoverDelay = 500;
   @Input() openDelay = 200;
+  @Input() contextSubmenuTrigger: any;
+  @Input() menuContext: any;
   menu: ActiveContextMenu;
   opentimer: any;
   closetimer: any;
@@ -20,10 +19,17 @@ export class ContextSubmenuTriggerDirective implements OnInit, OnDestroy {
 
   @HostListener('click', ['$event', 'true'])
   handleSubMenuClick($event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
     clearTimeout(this.opentimer);
     clearTimeout(this.closetimer);
-    event.preventDefault();
-    this.menu = this.contextMenuService.show($event, MenuComponent, true, this.level);
+    this.menu = this.contextMenuService.show(
+      $event,
+      this.contextSubmenuTrigger,
+      this.menuContext,
+      true,
+      this.level,
+    );
     this.visible = true;
   }
 
@@ -34,14 +40,23 @@ export class ContextSubmenuTriggerDirective implements OnInit, OnDestroy {
     }
     clearTimeout(this.closetimer);
     this.opentimer = setTimeout(() => {
-      this.menu = this.contextMenuService.show($event, MenuComponent, true, this.level);
+      this.menu = this.contextMenuService.show(
+        $event,
+        this.contextSubmenuTrigger,
+        this.menuContext,
+        true,
+        this.level,
+      );
       this.visible = true;
       this.opentimer = null;
     }, this.openDelay);
   }
 
+  /**
+   * submenu hides after cursor has exited for a period of time
+   */
   @HostListener('mouseout', ['$event'])
-  handleSubMenuExit($event: MouseEvent) {
+  handleSubMenuExit() {
     clearTimeout(this.opentimer);
     if (this.menu) {
       this.menu.isTriggerHovered.next(false);
@@ -56,11 +71,14 @@ export class ContextSubmenuTriggerDirective implements OnInit, OnDestroy {
     }, this.hoverDelay);
   }
 
-  constructor(private contextMenuService: ContextMenuService) {}
-
-  ngOnInit() {
-    this.level = this.contextMenuService.getCurrentLevel();
+  constructor(private contextMenuService: ContextMenuService) {
+    // get current level
+    setTimeout(() => (this.level = this.contextMenuService.getCurrentLevel()));
   }
+
+  /**
+   * if overwritten make sure to clear timeouts
+   */
   ngOnDestroy() {
     clearTimeout(this.opentimer);
     clearTimeout(this.closetimer);

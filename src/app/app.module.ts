@@ -1,41 +1,15 @@
-import { OverlayModule } from '@angular/cdk/overlay';
-import { PortalModule } from '@angular/cdk/portal';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
-import { ContextSubmenuTriggerDirective } from './context-submenu-trigger.directive';
-import { MenuComponent } from './menu.component';
+import { ExampleMenuComponent } from './example-menu.component';
+import { ContextMenu } from '../lib/context-menu.module';
 
 @NgModule({
-  declarations: [
-    ContextMenuTriggerDirective,
-    ContextSubmenuTriggerDirective,
-  ],
-  exports: [
-    ContextMenuTriggerDirective,
-    ContextSubmenuTriggerDirective,
-  ],
-  imports: [
-    BrowserModule,
-    PortalModule,
-    OverlayModule,
-  ],
-  providers: [],
-})
-export class ContextMenu { }
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ContextMenu,
-  ],
+  declarations: [AppComponent, ExampleMenuComponent],
+  imports: [BrowserModule, ContextMenu, BrowserAnimationsModule],
   bootstrap: [AppComponent],
-  entryComponents: [MenuComponent],
+  entryComponents: [ExampleMenuComponent],
 })
-export class AppModule { }
+export class AppModule {}

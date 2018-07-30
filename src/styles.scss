@@ -1,9 +1,9 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
 // @import "~bootstrap/scss/images";
 // @import "~bootstrap/scss/code";
 // @import "~bootstrap/scss/grid";
@@ -11,7 +11,7 @@
 // @import "~bootstrap/scss/forms";
 // @import "~bootstrap/scss/buttons";
 // @import "~bootstrap/scss/transitions";
-@import "~bootstrap/scss/dropdown";
+@import '~bootstrap/scss/dropdown';
 // @import "~bootstrap/scss/button-group";
 // @import "~bootstrap/scss/input-group";
 // @import "~bootstrap/scss/custom-forms";
@@ -31,8 +31,8 @@
 // @import "~bootstrap/scss/tooltip";
 // @import "~bootstrap/scss/popover";
 // @import "~bootstrap/scss/carousel";
-@import "~bootstrap/scss/utilities";
-@import "~bootstrap/scss/print";
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/print';
 
 .cdk-overlay-container {
   position: fixed;
@@ -47,4 +47,24 @@
   position: absolute;
   pointer-events: auto;
   box-sizing: border-box;
+}
+.cdk-overlay-backdrop {
+  // background-color: #000;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // position: absolute;
+  // bottom: 0;
+  // z-index: 3;
+  background-color: rgba(0,0,0,.6);
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-property: background-color, visibility;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: block;
+  z-index: 3;
 }

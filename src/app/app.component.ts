@@ -1,12 +1,22 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { CdkPortal, ComponentPortal, TemplatePortal, Portal } from '@angular/cdk/portal';
+import { Component, OnInit } from '@angular/core';
+import { ExampleMenuComponent } from './example-menu.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: []
+  styles: [
+    `
+      .selected {
+        background-color: blue;
+      }
+    `,
+  ],
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {
-  }
+  items = [
+    { name: 'swag', selected: false },
+    { name: 'bonus', selected: false },
+  ];
+  menu = ExampleMenuComponent;
+  ngOnInit() {}
 }
