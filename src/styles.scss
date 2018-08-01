@@ -1,12 +1,59 @@
 @import '~bootstrap/scss/functions';
+
+// Global settings
+
+$enable-caret: true;
+$enable-rounded: true;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-transitions: true;
+$enable-grid-classes: true;
+$enable-print-styles: true;
+
+$blue: #5e72e4 !default;
+$indigo: #5603ad !default;
+$purple: #8965e0 !default;
+$pink: #f3a4b5 !default;
+$red: #f5365c !default;
+$orange: #fb6340 !default;
+$yellow: #ffd600 !default;
+$green: #2dce89 !default;
+$teal: #11cdef !default;
+$cyan: #2bffc6 !default;
+
+$default: #172b4d !default;
+$primary: #5e72e4 !default;
+$secondary: #f4f5f7 !default;
+$success: $green !default;
+$info: $pink !default;
+$warning: $orange !default;
+$danger: $red !default;
+
 @import '~bootstrap/scss/variables';
+
+$nav-pills-padding-y: 0.75rem !default;
+$nav-pills-padding-x: 1rem !default;
+
+$nav-pills-space-x: 1rem !default;
+
+$nav-pills-bg: $white;
+$nav-pills-border-width: 1px !default;
+$nav-pills-border-color: theme-color('primary') !default;
+$nav-pills-border-radius: $border-radius !default;
+
+$nav-pills-link-color: theme-color('primary') !default;
+$nav-pills-link-hover-color: darken(theme-color('primary'), 5%);
+$nav-pills-link-active-color: color-yiq(theme-color('primary'));
+$nav-pills-link-active-bg: theme-color('primary') !default;
+$nav-pills-box-shadow: $btn-box-shadow !default;
+
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/root';
 @import '~bootstrap/scss/reboot';
 @import '~bootstrap/scss/type';
 // @import "~bootstrap/scss/images";
 // @import "~bootstrap/scss/code";
-// @import "~bootstrap/scss/grid";
+@import '~bootstrap/scss/grid';
 // @import "~bootstrap/scss/tables";
 // @import "~bootstrap/scss/forms";
 // @import "~bootstrap/scss/buttons";
@@ -15,13 +62,13 @@
 // @import "~bootstrap/scss/button-group";
 // @import "~bootstrap/scss/input-group";
 // @import "~bootstrap/scss/custom-forms";
-// @import "~bootstrap/scss/nav";
-// @import "~bootstrap/scss/navbar";
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
 // @import "~bootstrap/scss/card";
 // @import "~bootstrap/scss/breadcrumb";
 // @import "~bootstrap/scss/pagination";
 // @import "~bootstrap/scss/badge";
-// @import "~bootstrap/scss/jumbotron";
+@import '~bootstrap/scss/jumbotron';
 // @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
 // @import "~bootstrap/scss/media";
@@ -33,6 +80,15 @@
 // @import "~bootstrap/scss/carousel";
 @import '~bootstrap/scss/utilities';
 @import '~bootstrap/scss/print';
+
+@include media-breakpoint-down(md) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+.jumbotron {
+  background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 99%);
+}
 
 .cdk-overlay-container {
   position: fixed;
@@ -56,7 +112,7 @@
   // position: absolute;
   // bottom: 0;
   // z-index: 3;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
   transition-duration: 0.4s;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-property: background-color, visibility;

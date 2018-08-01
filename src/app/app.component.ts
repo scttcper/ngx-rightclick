@@ -12,11 +12,10 @@ import { ExampleMenuComponent } from './example-menu.component';
     `,
   ],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   items = [
     { name: 'swag', selected: false },
     { name: 'bonus', selected: false },
   ];
   menu = ExampleMenuComponent;
-  ngOnInit() {}
 }

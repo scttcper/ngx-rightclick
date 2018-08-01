@@ -20,10 +20,10 @@ import { MenuComponent } from '../lib/menu.component';
     <button class="dropdown-item" (click)="handleClick()">{{ item.name }}</button>
     <button class="dropdown-item" (click)="handleClick()">Another action</button>
     <div class="dropdown-submenu">
-      <button [contextSubmenuTrigger]="submenu" class="dropdown-item dropdown-toggle">Something else</button>
+      <button [contextSubmenuTrigger]="submenu" [menuContext]="item" class="dropdown-item dropdown-toggle">Something else</button>
     </div>
     <div class="dropdown-submenu">
-      <button [contextSubmenuTrigger]="submenu" class="dropdown-item dropdown-toggle">Something else</button>
+      <button [contextSubmenuTrigger]="submenu" [menuContext]="item" class="dropdown-item dropdown-toggle">Something else</button>
     </div>
     <a class="dropdown-item disabled" href="#">Disabled link</a>
     <div class="dropdown-divider"></div>
