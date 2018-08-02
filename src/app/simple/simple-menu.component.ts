@@ -16,15 +16,18 @@ import { MenuComponent } from '../../lib/menu.component';
 @Component({
   selector: 'app-menu',
   template: `
-  <div class="dropdown-menu ngx-contextmenu" style="position: relative;">
+  <div class="dropdown-menu show" style="position: relative;">
     <button class="dropdown-item" (click)="handleClick()">Another action</button>
-    <a class="dropdown-item disabled" href="#">Disabled link</a>
+    <button class="dropdown-item disabled">Disabled link</button>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="handleClick()">Separated link</a>
+    <button class="dropdown-item" (click)="handleClick()">Separated link</button>
   </div>
   `,
 })
 export class SimpleMenuComponent extends MenuComponent {
+  // this module does not have animations, set lazy false
+  lazy = false;
+
   constructor(
     public menuPackage: MenuPackage,
     public contextMenuService: ContextMenuService,
@@ -33,6 +36,7 @@ export class SimpleMenuComponent extends MenuComponent {
   }
 
   handleClick() {
+    // tell the menu to close
     this.contextMenuService.closeAll();
   }
 }

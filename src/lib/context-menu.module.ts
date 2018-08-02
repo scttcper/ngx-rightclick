@@ -11,4 +11,4 @@ import { ContextSubmenuTriggerDirective } from './context-submenu-trigger.direct
   exports: [ContextMenuTriggerDirective, ContextSubmenuTriggerDirective],
   imports: [BrowserModule, PortalModule, OverlayModule],
 })
-export class ContextMenu {}
+export class ContextMenuModule {}

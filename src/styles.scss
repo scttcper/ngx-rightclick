@@ -21,32 +21,15 @@ $green: #2dce89 !default;
 $teal: #11cdef !default;
 $cyan: #2bffc6 !default;
 
-$default: #172b4d !default;
-$primary: #5e72e4 !default;
-$secondary: #f4f5f7 !default;
+$default: $blue;
+$primary: $indigo;
+$secondary: #fff !default;
 $success: $green !default;
 $info: $pink !default;
 $warning: $orange !default;
 $danger: $red !default;
 
 @import '~bootstrap/scss/variables';
-
-$nav-pills-padding-y: 0.75rem !default;
-$nav-pills-padding-x: 1rem !default;
-
-$nav-pills-space-x: 1rem !default;
-
-$nav-pills-bg: $white;
-$nav-pills-border-width: 1px !default;
-$nav-pills-border-color: theme-color('primary') !default;
-$nav-pills-border-radius: $border-radius !default;
-
-$nav-pills-link-color: theme-color('primary') !default;
-$nav-pills-link-hover-color: darken(theme-color('primary'), 5%);
-$nav-pills-link-active-color: color-yiq(theme-color('primary'));
-$nav-pills-link-active-bg: theme-color('primary') !default;
-$nav-pills-box-shadow: $btn-box-shadow !default;
-
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/root';
 @import '~bootstrap/scss/reboot';
@@ -87,7 +70,7 @@ $nav-pills-box-shadow: $btn-box-shadow !default;
   }
 }
 .jumbotron {
-  background: linear-gradient(150deg, #281483 15%, #8f6ed5 70%, #d782d9 99%);
+  background: linear-gradient(150deg, #5603ad 15%, #8f6ed5 70%, rgb(195, 107, 253) 94%);
 }
 
 .cdk-overlay-container {
@@ -123,4 +106,8 @@ $nav-pills-box-shadow: $btn-box-shadow !default;
   position: absolute;
   display: block;
   z-index: 3;
+}
+
+.dropdown-submenu {
+  position: relative;
 }

@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ExampleMenuComponent } from './example-menu.component';
-import { ContextMenu } from '../lib/context-menu.module';
+import { ContextMenuModule } from '../lib/context-menu.module';
 import { SimpleComponent } from './simple/simple.component';
 import { SimpleMenuComponent } from './simple/simple-menu.component';
 
@@ -23,7 +23,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    ContextMenu,
+    ContextMenuModule,
     BrowserAnimationsModule,
     MdoButtonModule,
     RouterModule.forRoot(routes),

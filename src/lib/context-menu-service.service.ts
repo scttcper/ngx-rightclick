@@ -168,15 +168,20 @@ export class ContextMenuService {
   }
   destroyMenu(menu: ActiveContextMenu) {
     menu.component.instance._state = 'exit';
-    menu.component.instance._animationDone
-      .pipe(
-        filter((event: any) => event.toState === 'exit'),
-        take(1),
-      )
-      .subscribe(() => {
-        menu.overlayRef.detach();
-        menu.overlayRef.dispose();
-      });
+    if (menu.component.instance.lazy) {
+      menu.component.instance._animationDone
+        .pipe(
+          filter((event: any) => event.toState === 'exit'),
+          take(1),
+        )
+        .subscribe(() => {
+          menu.overlayRef.detach();
+          menu.overlayRef.dispose();
+        });
+    } else {
+      menu.overlayRef.detach();
+      menu.overlayRef.dispose();
+    }
   }
   close(menu: ActiveContextMenu, menuIndex: number) {
     this.destroyMenu(menu);

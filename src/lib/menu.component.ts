@@ -13,6 +13,8 @@ export class MenuComponent {
   /** State of the dialog animation. */
   _state: 'void' | 'enter' | 'exit' = 'enter';
   _animationDone = new Subject<AnimationEvent>();
+  /** set lazy to False if you do not have animations */
+  lazy = true;
   closetimer: any;
 
   @HostListener('mouseover')
@@ -43,7 +45,8 @@ export class MenuComponent {
   constructor(
     public menuPackage: MenuPackage,
     public contextMenuService: ContextMenuService,
-  ) {}
+  ) {
+  }
 
   hover($event) {
     this.contextMenuService.show($event, MenuComponent, true);
