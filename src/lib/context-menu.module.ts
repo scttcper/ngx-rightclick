@@ -5,9 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ContextMenuTriggerDirective } from './context-menu-trigger.directive';
 import { ContextSubmenuTriggerDirective } from './context-submenu-trigger.directive';
+import { MenuComponent } from './menu.component';
 
 @NgModule({
-  declarations: [ContextMenuTriggerDirective, ContextSubmenuTriggerDirective],
+  declarations: [
+    ContextMenuTriggerDirective,
+    ContextSubmenuTriggerDirective,
+    MenuComponent,
+  ],
   exports: [ContextMenuTriggerDirective, ContextSubmenuTriggerDirective],
   imports: [BrowserModule, PortalModule, OverlayModule],
 })
