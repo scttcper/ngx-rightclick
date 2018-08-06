@@ -111,3 +111,14 @@ $danger: $red !default;
 .dropdown-submenu {
   position: relative;
 }
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu button::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: 0.8em;
+}

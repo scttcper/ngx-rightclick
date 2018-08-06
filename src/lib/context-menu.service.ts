@@ -63,7 +63,8 @@ export class ContextMenuService {
         }),
       };
     } else {
-      this.closeAll(level);
+      // close other submenus
+      this.closeAll(undefined, level);
       target = $event.target;
     }
     const el = new ElementRef(target);

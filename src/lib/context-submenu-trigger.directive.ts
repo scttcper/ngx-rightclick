@@ -49,6 +49,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
     }
     clearTimeout(this.closetimer);
     this.opentimer = setTimeout(() => {
+      console.log('submenu')
       this.menu = this.contextMenuService.show(
         $event,
         this.contextSubmenuTrigger,
