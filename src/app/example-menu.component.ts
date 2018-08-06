@@ -7,10 +7,8 @@ import {
 } from '@angular/animations';
 import { Component } from '@angular/core';
 
-import {
-  ContextMenuService,
-  MenuPackage,
-} from '../lib/context-menu-service.service';
+import { ContextMenuService } from '../lib/context-menu.service';
+import { MenuPackage } from '../lib/context-menu-injector';
 import { MenuComponent } from '../lib/menu.component';
 
 @Component({
@@ -66,10 +64,6 @@ export class ExampleMenuComponent extends MenuComponent {
   ) {
     super(menuPackage, contextMenuService);
     this.item = menuPackage.context;
-  }
-
-  hover($event) {
-    this.contextMenuService.show($event, MenuComponent, true);
   }
 
   handleClick() {

@@ -9,9 +9,14 @@ import { ExampleMenuComponent } from './example-menu.component';
 import { ContextMenuModule } from '../lib/context-menu.module';
 import { SimpleComponent } from './simple/simple.component';
 import { SimpleMenuComponent } from './simple/simple-menu.component';
+import { AnimatedMenuComponent } from './simple/animated-menu.component';
+import { MultipleMenuComponent } from './multiple/multiple-menu.component';
+import { MultipleComponent } from './multiple/multiple.component';
 
 const routes: Routes = [
   { path: 'simple', component: SimpleComponent },
+  { path: 'multiple', component: MultipleComponent },
+  { path: '**', redirectTo: 'simple' },
 ];
 
 @NgModule({
@@ -20,6 +25,9 @@ const routes: Routes = [
     ExampleMenuComponent,
     SimpleComponent,
     SimpleMenuComponent,
+    AnimatedMenuComponent,
+    MultipleMenuComponent,
+    MultipleComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ExampleMenuComponent, SimpleMenuComponent],
+  entryComponents: [
+    ExampleMenuComponent,
+    SimpleMenuComponent,
+    AnimatedMenuComponent,
+    MultipleMenuComponent,
+  ],
 })
 export class AppModule {}

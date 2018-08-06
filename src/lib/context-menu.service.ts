@@ -4,10 +4,12 @@ import {
   ScrollStrategyOptions,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ElementRef, Injectable, Injector } from '@angular/core';
+import { ElementRef, Injectable, Injector, EventEmitter } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
+
+import { MenuInjector } from './context-menu-injector';
 
 export interface ActiveContextMenuSub {
   id: number;
@@ -18,6 +20,7 @@ export interface ActiveContextMenuSub {
 export interface ActiveContextMenu extends ActiveContextMenuSub {
   overlayRef: OverlayRef;
   component: any;
+  menuClose: EventEmitter<any>;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -42,6 +45,7 @@ export class ContextMenuService {
     $event: MouseEvent,
     menuComponent,
     context: any,
+    menuClose: EventEmitter<any>,
     submenu = false,
     level?: number,
   ): ActiveContextMenu {
@@ -153,20 +157,21 @@ export class ContextMenuService {
       scrollStrategy: this.scrollStrategy.close(),
     });
     const component = overlayRef.attach<any>(componentPortal);
-    const res = { overlayRef, component, ...t };
+    const res = { overlayRef, component, ...t, menuClose };
     this.menus.push(res);
     return res;
   }
   getCurrentLevel() {
     return this.menus.length;
   }
-  closeAll(idx = 0) {
+  closeAll(context?: any, idx = 0) {
     for (let index = idx; index < this.menus.length; index++) {
-      this.destroyMenu(this.menus[index]);
+      const menu = this.menus[index];
+      this.destroyMenu(menu, context);
     }
     this.menus.splice(idx, this.menus.length);
   }
-  destroyMenu(menu: ActiveContextMenu) {
+  destroyMenu(menu: ActiveContextMenu, context?: any, ) {
     menu.component.instance._state = 'exit';
     if (menu.component.instance.lazy) {
       menu.component.instance._animationDone
@@ -182,12 +187,13 @@ export class ContextMenuService {
       menu.overlayRef.detach();
       menu.overlayRef.dispose();
     }
+    menu.menuClose.next(context);
   }
-  close(menu: ActiveContextMenu, menuIndex: number) {
-    this.destroyMenu(menu);
+  close(menu: ActiveContextMenu, menuIndex: number, context?: any) {
+    this.destroyMenu(menu, context);
     this.menus.splice(menuIndex, 1);
   }
-  clickMenu($event: MouseEvent) {
+  checkOutsideClick($event: MouseEvent) {
     for (const m of this.menus) {
       const clickedInside = m.component.location.nativeElement.contains(
         $event.target,
@@ -219,27 +225,5 @@ export class ContextMenuService {
         return;
       }
     }
-  }
-}
-
-export class MenuPackage {
-  constructor(public menu: ActiveContextMenuSub, public context: any) {}
-}
-
-export class MenuInjector implements Injector {
-  _menuContext: MenuPackage;
-  constructor(
-    private _activeContextMenu: ActiveContextMenuSub,
-    private _parentInjector: Injector,
-    private context: any,
-  ) {
-    this._menuContext = new MenuPackage(_activeContextMenu, context);
-  }
-
-  get(token: any, notFoundValue?: any): any {
-    if (token === MenuPackage) {
-      return this._menuContext;
-    }
-    return this._parentInjector.get(token, notFoundValue);
   }
 }

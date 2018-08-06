@@ -1,9 +1,16 @@
-import { Directive, HostListener, Input, OnDestroy } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import {
   ActiveContextMenu,
   ContextMenuService,
-} from './context-menu-service.service';
+} from './context-menu.service';
 
 @Directive({ selector: '[contextSubmenuTrigger]' })
 export class ContextSubmenuTriggerDirective implements OnDestroy {
@@ -11,6 +18,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
   @Input() openDelay = 200;
   @Input() contextSubmenuTrigger: any;
   @Input() menuContext: any;
+  @Output() menuClose = new EventEmitter<any>();
   menu: ActiveContextMenu;
   opentimer: any;
   closetimer: any;
@@ -27,6 +35,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
       $event,
       this.contextSubmenuTrigger,
       this.menuContext,
+      this.menuClose,
       true,
       this.level,
     );
@@ -44,6 +53,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
         $event,
         this.contextSubmenuTrigger,
         this.menuContext,
+        this.menuClose,
         true,
         this.level,
       );

@@ -1,14 +1,21 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import {
-  ActiveContextMenu,
   ContextMenuService,
-} from './context-menu-service.service';
+  ActiveContextMenu,
+} from './context-menu.service';
 
 @Directive({ selector: '[contextMenuTrigger]' })
 export class ContextMenuTriggerDirective {
   @Input() contextMenuTrigger: any;
   @Input() menuContext: any;
+  @Output() menuClose = new EventEmitter<any>();
   menu: ActiveContextMenu;
   visible = false;
 
@@ -16,7 +23,12 @@ export class ContextMenuTriggerDirective {
   @HostListener('contextmenu', ['$event'])
   handleMenu($event: MouseEvent) {
     $event.preventDefault();
-    this.menu = this.contextMenuService.show($event, this.contextMenuTrigger, this.menuContext);
+    this.menu = this.contextMenuService.show(
+      $event,
+      this.contextMenuTrigger,
+      this.menuContext,
+      this.menuClose,
+    );
     this.visible = true;
   }
 

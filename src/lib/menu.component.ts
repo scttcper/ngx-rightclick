@@ -1,9 +1,9 @@
 import { Component, HostListener } from '@angular/core';
-import {AnimationEvent} from '@angular/animations';
+import { AnimationEvent } from '@angular/animations';
 
-import { ContextMenuService, MenuPackage } from './context-menu-service.service';
+import { ContextMenuService } from './context-menu.service';
+import { MenuPackage } from './context-menu-injector';
 import { Subject } from 'rxjs';
-
 
 @Component({
   selector: 'app-menu',
@@ -39,18 +39,13 @@ export class MenuComponent {
 
   @HostListener('document:click', ['$event'])
   handleWindowClick($event: MouseEvent) {
-    this.contextMenuService.clickMenu($event);
+    this.contextMenuService.checkOutsideClick($event);
   }
 
   constructor(
     public menuPackage: MenuPackage,
     public contextMenuService: ContextMenuService,
-  ) {
-  }
-
-  hover($event) {
-    this.contextMenuService.show($event, MenuComponent, true);
-  }
+  ) {}
 
   /** Callback that is invoked when the menu animation completes. */
   _onAnimationDone(event: AnimationEvent) {
