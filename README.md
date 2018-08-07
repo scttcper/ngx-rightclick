@@ -74,6 +74,29 @@ export class SimpleMenuComponent extends MenuComponent {
 }
 ```
 
+Last step add css somewhere in your global styles
+```css
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ngx-contextmenu.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+// not required but can help with mobile right click
+.target {
+  user-select: none;
+}
+```
+
 ## [Inputs]
 
 | name                                       | type        | description                                  |
