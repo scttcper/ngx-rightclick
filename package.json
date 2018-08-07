@@ -14,7 +14,7 @@
     "lint": "ng lint ngx-rightclick --type-check --format stylish",
     "lint:fix": "ng lint ngx-rightclick --type-check --fix --format stylish",
     "bundlesize": "npx bundlesize",
-    "travis-deploy-once": "travis-deploy-once",
+    "travis-deploy-once": "travis-deploy-once --pro",
     "commit": "git-cz",
     "semantic-release": "cd dist && semantic-release"
   },
