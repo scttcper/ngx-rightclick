@@ -17,7 +17,7 @@
   "homepage": "https://github.com/TypeCtrl/ngx-rightclick",
   "license": "MIT",
   "bugs": "https://github.com/TypeCtrl/ngx-rightclick/issues",
-  "keywords": ["ngx", "github", "buttons", "star", "like", "follow"],
+  "keywords": ["ngx", "contextmenu", "rightclick", "menu", "context", "angular"],
   "ngPackage": {
     "lib": {
       "entryFile": "public_api.ts"
