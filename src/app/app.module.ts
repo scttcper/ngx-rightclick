@@ -41,7 +41,7 @@ const routes: Routes = [
     ContextMenuModule,
     BrowserAnimationsModule,
     MdoButtonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
   ],
   bootstrap: [AppComponent],
   entryComponents: [
