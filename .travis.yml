@@ -8,8 +8,8 @@ script:
   # - npm run test:ci
   - npm run build
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  # - npm run travis-deploy-once "npm run semantic-release"
+  # - bash <(curl -s https://codecov.io/bash)
+  - npm run travis-deploy-once "npm run semantic-release"
   - npm run ghpages
 deploy:
   provider: pages
