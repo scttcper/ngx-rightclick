@@ -5,7 +5,7 @@ import { SubmenuMenuComponent } from './submenu-menu.component';
   selector: 'simple-component',
   template: `
   <div class="d-flex flex-row justify-content-around bd-highlight">
-    <div class="p-5 bd-highlight bg-light border rounded"
+    <div class="p-5 bd-highlight bg-light border rounded target"
       [contextMenuTrigger]="menu" (menuAction)="handleClose($event)">
       Right Click
     </div>

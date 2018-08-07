@@ -7,7 +7,7 @@ import { MultipleMenuComponent } from './multiple-menu.component';
   template: `
   <div class="mb-3 d-flex flex-row justify-content-around bd-highlight">
     <div *ngFor="let item of items"
-      class="p-3 p-md-4 p-lg-5 mr-1 bd-highlight bg-light border rounded"
+      class="p-3 p-md-4 p-lg-5 mr-1 bd-highlight bg-light border rounded target"
       [contextMenuTrigger]="menu" [menuContext]="item"
       (menuAction)="handleClose($event)">
       {{ item.name }} ({{ item.count }})

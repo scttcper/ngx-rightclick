@@ -7,10 +7,10 @@ import { AnimatedMenuComponent } from './animated-menu.component';
   template: `
   <p class="text-center">Right click to see menu</p>
   <div class="d-flex flex-row justify-content-around bd-highlight">
-    <div class="p-4 p-md-5 bd-highlight bg-light border rounded" [contextMenuTrigger]="menu">
+    <div class="p-4 p-md-5 bd-highlight bg-light border rounded target" [contextMenuTrigger]="menu">
       Basic Menu
     </div>
-    <div class="p-4 p-md-5 bd-highlight bg-light border rounded" [contextMenuTrigger]="animatedMenu">
+    <div class="p-4 p-md-5 bd-highlight bg-light border rounded target" [contextMenuTrigger]="animatedMenu">
       Animated Menu
     </div>
   </div>
