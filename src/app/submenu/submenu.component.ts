@@ -5,20 +5,21 @@ import { SubmenuMenuComponent } from './submenu-menu.component';
   selector: 'simple-component',
   template: `
   <div class="d-flex flex-row justify-content-around bd-highlight">
-    <div class="p-4 p-md-5 bd-highlight bg-light border rounded" [contextMenuTrigger]="menu" (menuClose)="handleClose($event)">
+    <div class="p-5 bd-highlight bg-light border rounded"
+      [contextMenuTrigger]="menu" (menuAction)="handleClose($event)">
       Right Click
     </div>
   </div>
+  <p *ngFor="let message of messages">{{ message }}</p>
   `,
 })
 
-export class SubmenuComponent implements OnInit {
+export class SubmenuComponent {
   menu = SubmenuMenuComponent;
-  constructor() { }
+  messages: string[] = [];
 
-  ngOnInit() { }
-
-  handleClose(e) {
-    console.log(e);
+  handleClose(msg: string) {
+    this.messages.unshift(msg);
+    this.messages.splice(10, this.messages.length);
   }
 }

@@ -1,27 +1,108 @@
-# NgxRightclick
+<div align="center">
+  <h1>ngx-rightclick</h1>
+  <br>
+  <a href="https://www.npmjs.com/package/@ctrl/ngx-rightclick">
+    <img src="https://img.shields.io/npm/v/@ctrl/ngx-rightclick.svg" alt="npm">
+  </a>
+  <a href="https://travis-ci.org/TypeCtrl/ngx-rightclick">
+    <img src="https://img.shields.io/travis/TypeCtrl/ngx-rightclick/master.svg" alt="travis">
+  </a>
+  <a href="https://codecov.io/github/typectrl/ngx-rightclick">
+    <img src="https://img.shields.io/codecov/c/github/typectrl/ngx-rightclick.svg" alt="codecov">
+  </a>
+  <br>
+  <br>
+</div>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+> Context Menu Service for Angular 
 
-## Development server
+Demo: https://typectrl.github.io/ngx-rightclick/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Install
+if you don't already have `@angular/cdk` that needs to be installed too
+```sh
+npm install @ctrl/ngx-rightclick
+```
 
-## Code scaffolding
+## Use
+Import and Add to NgModule
+```ts
+import { ContextMenuModule } from '@ctrl/ngx-rightclick';
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Add context menu directive to element and pass the menu component to be shown. __Important__ the menu component must also be added as to entryComponents in your NgModule. [See here](https://github.com/TypeCtrl/ngx-rightclick/blob/2d9d0430e1e762e202d39dbad79da6bdaea1db23/src/app/app.module.ts#L47-L53)
+```ts
+// show.component.ts
+@Component({
+  template: `
+  <div [contextMenuTrigger]="menu" (menuAction)="handleClose($event)">Right Click</div>
+  `,
+})
+export class ShowComponent {
+  menu = MyMenuComponent;
+}
+```
 
-## Build
+```ts
+// my-menu.component.ts
+import { Component } from '@angular/core';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+import { MenuComponent, ContextMenuService, MenuPackage } from '@ctrl/ngx-rightclick';
 
-## Running unit tests
+@Component({
+  selector: 'simple-menu',
+  // add your menu html
+  template: `<a (click)="handleClick()">Download</a>`,
+})
+export class SimpleMenuComponent extends MenuComponent {
+  // this module does not have animations, set lazy false
+  lazy = false;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor(
+    public menuPackage: MenuPackage,
+    public contextMenuService: ContextMenuService,
+  ) {
+    super(menuPackage, contextMenuService);
+    // grab any required menu context passed via menuContext input
+    console.log(menuPackage.context)
+  }
 
-## Running end-to-end tests
+  handleClick() {
+    // IMPORTANT! tell the menu to close 
+    this.contextMenuService.closeAll();
+  }
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## [Inputs]
 
-## Further help
+| name                                       | type        | description                                  |
+| ------------------------------------------ | ----------- | -------------------------------------------- |
+| contextMenuTrigger / contextSubmenuTrigger | `component` | the menu or submenu to be shown              |
+| menuContext                                | `any`       | passed to the menu component via MenuPackage |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## (Ouput)
+
+| name       | type   | description                                         |
+| ---------- | ------ | --------------------------------------------------- |
+| menuAction | `any`  | whatever is passed to `ContextMenuService.closeAll` |
+| menuClose  | `void` | triggered whenever a menu or submenu is closed      |
+
+
+## Submenu
+Use the `contextSubmenuTrigger` directive as you would the contextMenuTrigger inside your menu. 
+
+## Mobile
+Install hammerjs and import it in your `main.ts` file or somewhere at the root/bootstrap of your angular app. The longpress event will automatically be picked up and show a context menu. `npm install hammerjs` `import 'hammerjs'`
+
+## Other Options
+[ngx-contextmenu](https://github.com/isaacplmann/ngx-contextmenu)  
+Find the Angular Component of your dreams on [angular.parts](https://angular.parts/)
+
+## License
+MIT
+
+---
+
+> GitHub [@scttcper](https://github.com/scttcper) &nbsp;&middot;&nbsp;
+> Twitter [@scttcper](https://twitter.com/scttcper)

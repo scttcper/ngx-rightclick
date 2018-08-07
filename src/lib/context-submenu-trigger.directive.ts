@@ -18,7 +18,8 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
   @Input() openDelay = 200;
   @Input() contextSubmenuTrigger: any;
   @Input() menuContext: any;
-  @Output() menuClose = new EventEmitter<any>();
+  @Output() menuAction = new EventEmitter<any>();
+  @Output() menuClose = new EventEmitter<void>();
   menu: ActiveContextMenu;
   opentimer: any;
   closetimer: any;
@@ -36,6 +37,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
       this.contextSubmenuTrigger,
       this.menuContext,
       this.menuClose,
+      this.menuAction,
       true,
       this.level,
     );
@@ -49,12 +51,12 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
     }
     clearTimeout(this.closetimer);
     this.opentimer = setTimeout(() => {
-      console.log('submenu')
       this.menu = this.contextMenuService.show(
         $event,
         this.contextSubmenuTrigger,
         this.menuContext,
         this.menuClose,
+        this.menuAction,
         true,
         this.level,
       );

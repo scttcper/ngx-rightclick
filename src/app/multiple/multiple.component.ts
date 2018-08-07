@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MultipleMenuComponent } from './multiple-menu.component';
 
 @Component({
@@ -8,7 +9,7 @@ import { MultipleMenuComponent } from './multiple-menu.component';
     <div *ngFor="let item of items"
       class="p-3 p-md-4 p-lg-5 mr-1 bd-highlight bg-light border rounded"
       [contextMenuTrigger]="menu" [menuContext]="item"
-      (menuClose)="handleClose($event)">
+      (menuAction)="handleClose($event)">
       {{ item.name }} ({{ item.count }})
     </div>
   </div>

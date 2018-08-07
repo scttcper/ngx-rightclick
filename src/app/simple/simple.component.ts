@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SimpleMenuComponent } from './simple-menu.component';
 import { AnimatedMenuComponent } from './animated-menu.component';
 
@@ -17,10 +17,7 @@ import { AnimatedMenuComponent } from './animated-menu.component';
   `,
 })
 
-export class SimpleComponent implements OnInit {
+export class SimpleComponent {
   menu = SimpleMenuComponent;
   animatedMenu = AnimatedMenuComponent;
-  constructor() { }
-
-  ngOnInit() { }
 }

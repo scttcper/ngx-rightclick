@@ -20,7 +20,8 @@ export interface ActiveContextMenuSub {
 export interface ActiveContextMenu extends ActiveContextMenuSub {
   overlayRef: OverlayRef;
   component: any;
-  menuClose: EventEmitter<any>;
+  menuClose: EventEmitter<void>;
+  menuAction: EventEmitter<any>;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -46,6 +47,7 @@ export class ContextMenuService {
     menuComponent,
     context: any,
     menuClose: EventEmitter<any>,
+    menuAction: EventEmitter<any>,
     submenu = false,
     level?: number,
   ): ActiveContextMenu {
@@ -158,7 +160,7 @@ export class ContextMenuService {
       scrollStrategy: this.scrollStrategy.close(),
     });
     const component = overlayRef.attach<any>(componentPortal);
-    const res = { overlayRef, component, ...t, menuClose };
+    const res = { overlayRef, component, ...t, menuClose, menuAction };
     this.menus.push(res);
     return res;
   }
@@ -172,7 +174,7 @@ export class ContextMenuService {
     }
     this.menus.splice(idx, this.menus.length);
   }
-  destroyMenu(menu: ActiveContextMenu, context?: any, ) {
+  destroyMenu(menu: ActiveContextMenu, context?: any) {
     menu.component.instance._state = 'exit';
     if (menu.component.instance.lazy) {
       menu.component.instance._animationDone
@@ -188,7 +190,10 @@ export class ContextMenuService {
       menu.overlayRef.detach();
       menu.overlayRef.dispose();
     }
-    menu.menuClose.next(context);
+    if (context) {
+      menu.menuAction.next(context);
+    }
+    menu.menuClose.next();
   }
   close(menu: ActiveContextMenu, menuIndex: number, context?: any) {
     this.destroyMenu(menu, context);

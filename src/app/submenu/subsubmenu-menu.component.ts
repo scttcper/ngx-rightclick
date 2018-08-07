@@ -15,7 +15,8 @@ import { MenuComponent } from '../../lib/menu.component';
   selector: 'animated-menu',
   template: `
   <div class="dropdown-menu show" style="position: relative;">
-    <button class="dropdown-item" (click)="handleClick()">Another action</button>
+    <button class="dropdown-item" (click)="handleClick('submenu 1')">Submenu 1</button>
+    <button class="dropdown-item" (click)="handleClick('submenu 2')">Submenu 2</button>
   </div>
   `,
   animations: [
@@ -38,8 +39,8 @@ export class SubSubmenuMenuComponent extends MenuComponent {
     super(menuPackage, contextMenuService);
   }
 
-  handleClick() {
+  handleClick(action: string) {
     // tell the menu to close
-    this.contextMenuService.closeAll('submenu rocket');
+    this.contextMenuService.closeAll(action);
   }
 }

@@ -14,7 +14,7 @@ import { MenuComponent } from '../../lib/menu.component';
 @Component({
   selector: 'animated-menu',
   template: `
-  <div class="dropdown-menu show" style="position: relative;">
+  <div class="dropdown-menu show" style="position: relative;" [@menu]="_state" (@menu.done)="_onAnimationDone($event)">
     <button class="dropdown-item" (click)="handleClick()">Another action</button>
     <button class="dropdown-item disabled">Disabled link</button>
     <div class="dropdown-divider"></div>
@@ -23,15 +23,14 @@ import { MenuComponent } from '../../lib/menu.component';
   `,
   animations: [
     trigger('menu', [
-      state('enter', style({ opacity: 1 })),
-      state('exit, void', style({ opacity: 0 })),
-      transition('* => *', animate(250)),
+      state(
+        'enter',
+        style({ opacity: 1, marginTop: '0px', visibility: 'visible' }),
+      ),
+      state('exit, void', style({ opacity: 0, marginTop: '-15px' })),
+      transition('* => *', animate('120ms ease-in')),
     ]),
   ],
-  host: {
-    '[@menu]': '_state',
-    '(@menu.done)': '_onAnimationDone($event)',
-  },
 })
 export class AnimatedMenuComponent extends MenuComponent {
   constructor(

@@ -16,10 +16,10 @@ import { SubSubmenuMenuComponent } from './subsubmenu-menu.component';
   selector: 'animated-menu',
   template: `
   <div class="dropdown-menu show" style="position: relative;">
-    <button class="dropdown-item" (click)="handleClick()">Another action</button>
+    <button class="dropdown-item" (click)="handleClick('Save')">Save</button>
     <button class="dropdown-item disabled">Disabled link</button>
     <div class="dropdown-divider"></div>
-    <button class="dropdown-item" (click)="handleClick()">Separated link</button>
+    <button class="dropdown-item" (click)="handleClick('Download')">Download</button>
     <div class="dropdown-submenu">
       <button [contextSubmenuTrigger]="submenu" class="dropdown-item dropdown-toggle">Submenu</button>
     </div>
@@ -46,8 +46,8 @@ export class SubmenuMenuComponent extends MenuComponent {
     super(menuPackage, contextMenuService);
   }
 
-  handleClick() {
+  handleClick(msg: string) {
     // tell the menu to close
-    this.contextMenuService.closeAll();
+    this.contextMenuService.closeAll(msg);
   }
 }

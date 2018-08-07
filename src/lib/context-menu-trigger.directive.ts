@@ -15,7 +15,8 @@ import {
 export class ContextMenuTriggerDirective {
   @Input() contextMenuTrigger: any;
   @Input() menuContext: any;
-  @Output() menuClose = new EventEmitter<any>();
+  @Output() menuAction = new EventEmitter<any>();
+  @Output() menuClose = new EventEmitter<void>();
   menu: ActiveContextMenu;
   visible = false;
 
@@ -28,6 +29,7 @@ export class ContextMenuTriggerDirective {
       this.contextMenuTrigger,
       this.menuContext,
       this.menuClose,
+      this.menuAction,
     );
     this.visible = true;
   }
