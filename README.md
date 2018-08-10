@@ -99,10 +99,11 @@ Last step add css somewhere in your global styles
 
 ## [Inputs]
 
-| name                                       | type        | description                                  |
-| ------------------------------------------ | ----------- | -------------------------------------------- |
-| contextMenuTrigger / contextSubmenuTrigger | `component` | the menu or submenu to be shown              |
-| menuContext                                | `any`       | passed to the menu component via MenuPackage |
+| name                                       | type        | description                                             |
+| ------------------------------------------ | ----------- | ------------------------------------------------------- |
+| contextMenuTrigger / contextSubmenuTrigger | `component` | the menu or submenu to be shown                         |
+| menuContext                                | `any`       | passed to the menu component via MenuPackage            |
+| holdToDisplay                              | `number`    | `default: 1000` ms pressing down on mobile to show menu |
 
 ## (Ouput)
 
@@ -114,9 +115,6 @@ Last step add css somewhere in your global styles
 
 ## Submenu
 Use the `contextSubmenuTrigger` directive as you would the contextMenuTrigger inside your menu. 
-
-## Mobile
-Install hammerjs and import it in your `main.ts` file or somewhere at the root/bootstrap of your angular app. The longpress event will automatically be picked up and show a context menu. `npm install hammerjs` `import 'hammerjs'`
 
 ## Other Options
 [ngx-contextmenu](https://github.com/isaacplmann/ngx-contextmenu)  

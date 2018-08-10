@@ -23,7 +23,6 @@ export class MultipleComponent implements OnInit {
     { name: 'banana', count: 0 },
     { name: 'apple', count: 0 },
     { name: 'orange', count: 0 },
-    { name: 'mango', count: 0 },
   ];
   constructor() {}
 

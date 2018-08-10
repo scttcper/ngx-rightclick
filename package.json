@@ -34,7 +34,6 @@
     "@ctrl/ngx-github-buttons": "^2.0.4",
     "bootstrap": "4.1.3",
     "core-js": "2.5.7",
-    "hammerjs": "2.0.8",
     "rxjs": "6.2.2",
     "zone.js": "0.8.26"
   },
