@@ -4,23 +4,29 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 
-import {
-  ContextMenuService,
-  ActiveContextMenu,
-} from './context-menu.service';
+import { Subscription } from 'rxjs';
 
-@Directive({ selector: '[contextMenuTrigger]' })
-export class ContextMenuTriggerDirective {
+import { ContextMenuService, ActiveContextMenu } from './context-menu.service';
+
+@Directive({
+  selector: '[contextMenuTrigger]',
+  exportAs: 'contextMenuTrigger',
+})
+export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
   @Input() contextMenuTrigger: any;
   @Input() menuContext: any;
+  @Input() holdToDisplay = 1000;
   @Output() menuAction = new EventEmitter<any>();
   @Output() menuClose = new EventEmitter<void>();
   menu: ActiveContextMenu;
   visible = false;
+  private mouseDownTimeoutId: any;
+  private sub: Subscription;
 
-  @HostListener('longpress', ['$event'])
   @HostListener('contextmenu', ['$event'])
   handleMenu($event: MouseEvent) {
     $event.preventDefault();
@@ -34,5 +40,31 @@ export class ContextMenuTriggerDirective {
     this.visible = true;
   }
 
+  @HostListener('touchstart', ['$event'])
+  handleMouseDown($event: any) {
+    if (this.holdToDisplay >= 0) {
+      $event.stopPropagation();
+      $event.clientY = $event.touches[0].clientY;
+      $event.clientX = $event.touches[0].clientX;
+
+      this.mouseDownTimeoutId = setTimeout(
+        () => this.handleMenu($event),
+        this.holdToDisplay,
+      );
+    }
+  }
+
+  @HostListener('touchend')
+  handleMouseUp() {
+    clearTimeout(this.mouseDownTimeoutId);
+  }
+
   constructor(private contextMenuService: ContextMenuService) {}
+
+  ngOnInit() {
+    this.sub = this.menuClose.subscribe(() => this.visible = false);
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }
