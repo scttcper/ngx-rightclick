@@ -35,11 +35,12 @@ Add context menu directive to element and pass the menu component to be shown. _
 // show.component.ts
 @Component({
   template: `
-  <div [contextMenuTrigger]="menu" (menuAction)="handleClose($event)">Right Click</div>
+  <div [contextMenuTrigger]="menu" (menuAction)="handleMenuAction($event)">Right Click</div>
   `,
 })
 export class ShowComponent {
-  menu = MyMenuComponent;
+  // menu component imported and assigned locally
+  menu = SimpleMenuComponent;
 }
 ```
 
@@ -68,7 +69,7 @@ export class SimpleMenuComponent extends MenuComponent {
   }
 
   handleClick() {
-    // IMPORTANT! tell the menu to close 
+    // IMPORTANT! tell the menu to close, anything passed in here is given to (menuAction)
     this.contextMenuService.closeAll();
   }
 }
