@@ -20,6 +20,6 @@ export class MenuInjector implements Injector {
     if (token === MenuPackage) {
       return this._menuContext;
     }
-    return this._parentInjector.get<T>(token, notFoundValue);
+    return this._parentInjector.get<T>(token, notFoundValue, flags);
   }
 }
