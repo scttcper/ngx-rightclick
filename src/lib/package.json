@@ -7,9 +7,9 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/core": "^6.0.0",
-    "@angular/common": "^6.0.0",
-    "@angular/cdk": "^6.4.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/cdk": "^6.4.0 || ^7.0.0",
     "rxjs": "^6.2.0"
   },
   "author": "Scott Cooper <scttcper@gmail.com> (https://github.com/scttcper)",
