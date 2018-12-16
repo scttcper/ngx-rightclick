@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ButtonService, MdoButtonModule } from '@ctrl/ngx-github-buttons';
+import { of as ObservableOf } from 'rxjs';
 
 import { MenuComponent } from './menu.component';
+
+class FakeButtonService {
+  repo() {
+    return ObservableOf({ stargazers_count: 0 });
+  }
+}
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -8,9 +16,10 @@ describe('MenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuComponent ]
-    })
-    .compileComponents();
+      declarations: [MenuComponent],
+      imports: [MdoButtonModule],
+      providers: [{ provide: ButtonService, useClass: FakeButtonService }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
