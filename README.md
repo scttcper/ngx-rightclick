@@ -4,12 +4,6 @@
   <a href="https://www.npmjs.com/package/@ctrl/ngx-rightclick">
     <img src="https://img.shields.io/npm/v/@ctrl/ngx-rightclick.svg" alt="npm">
   </a>
-  <a href="https://travis-ci.org/TypeCtrl/ngx-rightclick">
-    <img src="https://img.shields.io/travis/TypeCtrl/ngx-rightclick/master.svg" alt="travis">
-  </a>
-  <a href="https://codecov.io/github/typectrl/ngx-rightclick">
-    <img src="https://img.shields.io/codecov/c/github/typectrl/ngx-rightclick.svg" alt="codecov">
-  </a>
   <br>
   <br>
 </div>
