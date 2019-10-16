@@ -14,12 +14,21 @@ import { MenuComponent } from '../../lib/menu.component';
 @Component({
   selector: 'animated-menu',
   template: `
-  <div class="dropdown-menu show" style="position: relative;" [@menu]="_state" (@menu.done)="_onAnimationDone($event)">
-    <button class="dropdown-item" (click)="handleClick('Another action')">Another action</button>
-    <button class="dropdown-item disabled">Disabled link</button>
-    <div class="dropdown-divider"></div>
-    <button class="dropdown-item" (click)="handleClick('Separated link')">Separated link</button>
-  </div>
+    <div
+      class="dropdown-menu show"
+      style="position: relative;"
+      [@menu]="_state"
+      (@menu.done)="_onAnimationDone($event)"
+    >
+      <button class="dropdown-item" (click)="handleClick('Another action')">
+        Another action
+      </button>
+      <button class="dropdown-item disabled">Disabled link</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="handleClick('Separated link')">
+        Separated link
+      </button>
+    </div>
   `,
   animations: [
     trigger('menu', [

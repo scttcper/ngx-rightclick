@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MultipleMenuComponent } from './multiple-menu.component';
 
@@ -16,7 +16,7 @@ import { MultipleMenuComponent } from './multiple-menu.component';
   <div *ngFor="let msg of messages">{{ msg }}</div>
   `,
 })
-export class MultipleComponent implements OnInit {
+export class MultipleComponent {
   messages: string[] = [];
   menu = MultipleMenuComponent;
   items = [
@@ -24,9 +24,6 @@ export class MultipleComponent implements OnInit {
     { name: 'apple', count: 0 },
     { name: 'orange', count: 0 },
   ];
-  constructor() {}
-
-  ngOnInit() {}
   handleClose(msg: string) {
     this.messages.unshift(msg);
     this.messages.splice(10, this.messages.length);

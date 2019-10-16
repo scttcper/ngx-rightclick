@@ -14,10 +14,19 @@ import { MenuComponent } from '../../lib/menu.component';
 @Component({
   selector: 'animated-menu',
   template: `
-  <div class="dropdown-menu show" style="position: relative;">
-    <button class="dropdown-item" (click)="handleClick('submenu 1')">Submenu 1</button>
-    <button class="dropdown-item" (click)="handleClick('submenu 2')">Submenu 2</button>
-  </div>
+    <div
+      class="dropdown-menu show"
+      style="position: relative;"
+      [@menu]="_state"
+      (@menu.done)="_onAnimationDone($event)"
+    >
+      <button class="dropdown-item" (click)="handleClick('submenu 1')">
+        Submenu 1
+      </button>
+      <button class="dropdown-item" (click)="handleClick('submenu 2')">
+        Submenu 2
+      </button>
+    </div>
   `,
   animations: [
     trigger('menu', [
@@ -26,10 +35,6 @@ import { MenuComponent } from '../../lib/menu.component';
       transition('* => *', animate(100)),
     ]),
   ],
-  host: {
-    '[@menu]': '_state',
-    '(@menu.done)': '_onAnimationDone($event)',
-  },
 })
 export class SubSubmenuMenuComponent extends MenuComponent {
   constructor(
