@@ -17,6 +17,11 @@ export class MenuComponent {
   lazy = true;
   closetimer: any;
 
+  constructor(
+    public menuPackage: MenuPackage,
+    public contextMenuService: ContextMenuService,
+  ) {}
+
   @HostListener('mouseover')
   handleMouseover() {
     if (!this.menuPackage.menu.submenu) {
@@ -42,13 +47,8 @@ export class MenuComponent {
     this.contextMenuService.checkOutsideClick($event);
   }
 
-  constructor(
-    public menuPackage: MenuPackage,
-    public contextMenuService: ContextMenuService,
-  ) {}
-
   /** Callback that is invoked when the menu animation completes. */
-  @HostListener('@menu.done')
+  @HostListener('@menu.done', ['$event'])
   _onAnimationDone(event: AnimationEvent) {
     this._animationDone.next(event);
   }

@@ -7,17 +7,14 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import {
-  ActiveContextMenu,
-  ContextMenuService,
-} from './context-menu.service';
+import { ActiveContextMenu, ContextMenuService } from './context-menu.service';
 
 @Directive({ selector: '[contextSubmenuTrigger]' })
 export class ContextSubmenuTriggerDirective implements OnDestroy {
   @Input() hoverDelay = 500;
   @Input() openDelay = 200;
-  @Input() contextSubmenuTrigger: any;
-  @Input() menuContext: any;
+  @Input() contextSubmenuTrigger?: any;
+  @Input() menuContext?: any;
   @Output() menuAction = new EventEmitter<any>();
   @Output() menuClose = new EventEmitter<void>();
   menu: ActiveContextMenu;
@@ -26,7 +23,12 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
   visible = false;
   level = 1;
 
-  @HostListener('click', ['$event', 'true'])
+  constructor(private contextMenuService: ContextMenuService) {
+    // get current level
+    setTimeout(() => (this.level = this.contextMenuService.getCurrentLevel()));
+  }
+
+  @HostListener('click', ['$event'])
   handleSubMenuClick($event: MouseEvent) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -68,7 +70,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
   /**
    * submenu hides after cursor has exited for a period of time
    */
-  @HostListener('mouseout', ['$event'])
+  @HostListener('mouseout')
   handleSubMenuExit() {
     clearTimeout(this.opentimer);
     if (this.menu) {
@@ -82,11 +84,6 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
       }
       this.visible = false;
     }, this.hoverDelay);
-  }
-
-  constructor(private contextMenuService: ContextMenuService) {
-    // get current level
-    setTimeout(() => (this.level = this.contextMenuService.getCurrentLevel()));
   }
 
   /**

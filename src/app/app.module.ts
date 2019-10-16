@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ExampleMenuComponent } from './example-menu.component';
 import { ContextMenuModule } from '../lib/context-menu.module';
 import { SimpleComponent } from './simple/simple.component';
 import { SimpleMenuComponent } from './simple/simple-menu.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleMenuComponent,
     SimpleComponent,
     SimpleMenuComponent,
     AnimatedMenuComponent,
@@ -45,7 +43,6 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ExampleMenuComponent,
     SimpleMenuComponent,
     AnimatedMenuComponent,
     MultipleMenuComponent,

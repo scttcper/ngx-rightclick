@@ -5,17 +5,19 @@ import { SubmenuMenuComponent } from './submenu-menu.component';
 @Component({
   selector: 'simple-component',
   template: `
-  <div class="d-flex flex-row justify-content-around bd-highlight">
-    <div class="p-5 bd-highlight bg-light border rounded target"
-      [contextMenuTrigger]="menu" (menuAction)="handleClose($event)">
-      Right Click
+    <div class="d-flex flex-row justify-content-around bd-highlight">
+      <div
+        class="p-5 bd-highlight bg-light border rounded target"
+        [contextMenuTrigger]="menu"
+        (menuAction)="handleClose($event)"
+      >
+        Right Click
+      </div>
     </div>
-  </div>
-  <p *ngFor="let message of messages">{{ message }}</p>
+    <p *ngFor="let message of messages">{{ message }}</p>
   `,
 })
 export class SubmenuComponent {
-
   menu = SubmenuMenuComponent;
   messages: string[] = [];
 
