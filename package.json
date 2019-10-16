@@ -58,6 +58,7 @@
     "tslint": "5.20.0",
     "typescript": "3.5.3"
   },
+  "repository": "TypeCtrl/ngx-rightclick",
   "release": {
     "branch": "master"
   }
