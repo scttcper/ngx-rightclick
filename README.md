@@ -1,8 +1,7 @@
 # ngx-rightclick
 
 [![npm](https://badge.fury.io/js/%40ctrl%2Fngx-rightclick.svg)](https://www.npmjs.org/package/@ctrl/ngx-rightclick)
-[![travis](https://travis-ci.org/TypeCtrl/ngx-rightclick.svg?branch=master)](https://travis-ci.org/TypeCtrl/ngx-rightclick)
-[![codecov](https://img.shields.io/codecov/c/github/typectrl/ngx-rightclick.svg)](https://codecov.io/github/typectrl/ngx-rightclick)
+[![CircleCI](https://circleci.com/gh/TypeCtrl/ngx-rightclick.svg?style=svg)](https://circleci.com/gh/TypeCtrl/ngx-rightclick)
 
 > Context Menu Service for Angular 
 
