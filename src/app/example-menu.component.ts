@@ -49,10 +49,6 @@ import { MenuComponent } from '../lib/menu.component';
       transition('* => *', animate(120)),
     ]),
   ],
-  host: {
-    '[@menu]': '_state',
-    '(@menu.done)': '_onAnimationDone($event)',
-  },
 })
 export class ExampleMenuComponent extends MenuComponent {
   submenu = ExampleMenuComponent;

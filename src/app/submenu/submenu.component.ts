@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { SubmenuMenuComponent } from './submenu-menu.component';
 
 @Component({
@@ -13,8 +14,8 @@ import { SubmenuMenuComponent } from './submenu-menu.component';
   <p *ngFor="let message of messages">{{ message }}</p>
   `,
 })
-
 export class SubmenuComponent {
+
   menu = SubmenuMenuComponent;
   messages: string[] = [];
 

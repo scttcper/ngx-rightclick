@@ -28,8 +28,8 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
 
   @HostListener('click', ['$event', 'true'])
   handleSubMenuClick($event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
+    $event.preventDefault();
+    $event.stopPropagation();
     clearTimeout(this.opentimer);
     clearTimeout(this.closetimer);
     this.menu = this.contextMenuService.show(

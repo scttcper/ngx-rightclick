@@ -7,19 +7,19 @@ export class MenuPackage {
 }
 
 export class MenuInjector implements Injector {
-  _menuContext: MenuPackage;
+  menuContext: MenuPackage;
   constructor(
-    private _activeContextMenu: ActiveContextMenuSub,
-    private _parentInjector: Injector,
+    private activeContextMenu: ActiveContextMenuSub,
+    private parentInjector: Injector,
     private context: any,
   ) {
-    this._menuContext = new MenuPackage(_activeContextMenu, context);
+    this.menuContext = new MenuPackage(activeContextMenu, context);
   }
 
   get<T>(token: any, notFoundValue?: T, flags?: InjectFlags): T | MenuPackage {
     if (token === MenuPackage) {
-      return this._menuContext;
+      return this.menuContext;
     }
-    return this._parentInjector.get<T>(token, notFoundValue, flags);
+    return this.parentInjector.get<T>(token, notFoundValue, flags);
   }
 }

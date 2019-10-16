@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, HostBinding } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 
 import { ContextMenuService } from './context-menu.service';
@@ -48,6 +48,7 @@ export class MenuComponent {
   ) {}
 
   /** Callback that is invoked when the menu animation completes. */
+  @HostListener('@menu.done')
   _onAnimationDone(event: AnimationEvent) {
     this._animationDone.next(event);
   }

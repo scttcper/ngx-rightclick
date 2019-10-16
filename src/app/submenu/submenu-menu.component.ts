@@ -15,15 +15,27 @@ import { SubSubmenuMenuComponent } from './subsubmenu-menu.component';
 @Component({
   selector: 'animated-menu',
   template: `
-  <div class="dropdown-menu show" style="position: relative;">
-    <button class="dropdown-item" (click)="handleClick('Save')">Save</button>
-    <button class="dropdown-item disabled">Disabled link</button>
-    <div class="dropdown-divider"></div>
-    <button class="dropdown-item" (click)="handleClick('Download')">Download</button>
-    <div class="dropdown-submenu">
-      <button [contextSubmenuTrigger]="submenu" class="dropdown-item dropdown-toggle">Submenu</button>
+    <div
+      class="dropdown-menu show"
+      style="position: relative;"
+      [@menu]="_state"
+      (@menu.done)="_onAnimationDone($event)"
+    >
+      <button class="dropdown-item" (click)="handleClick('Save')">Save</button>
+      <button class="dropdown-item disabled">Disabled link</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="handleClick('Download')">
+        Download
+      </button>
+      <div class="dropdown-submenu">
+        <button
+          [contextSubmenuTrigger]="submenu"
+          class="dropdown-item dropdown-toggle"
+        >
+          Submenu
+        </button>
+      </div>
     </div>
-  </div>
   `,
   animations: [
     trigger('menu', [
@@ -32,10 +44,6 @@ import { SubSubmenuMenuComponent } from './subsubmenu-menu.component';
       transition('* => *', animate(100)),
     ]),
   ],
-  host: {
-    '[@menu]': '_state',
-    '(@menu.done)': '_onAnimationDone($event)',
-  },
 })
 export class SubmenuMenuComponent extends MenuComponent {
   submenu = SubSubmenuMenuComponent;

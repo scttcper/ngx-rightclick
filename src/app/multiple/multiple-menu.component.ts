@@ -7,33 +7,32 @@ import {
 } from '@angular/animations';
 import { Component } from '@angular/core';
 
-import {
-  ContextMenuService,
-} from '../../lib/context-menu.service';
-import {
-  MenuPackage,
-} from '../../lib/context-menu-injector';
+import { ContextMenuService } from '../../lib/context-menu.service';
+import { MenuPackage } from '../../lib/context-menu-injector';
 import { MenuComponent } from '../../lib/menu.component';
 
 @Component({
   selector: 'animated-menu',
   template: `
-  <div class="dropdown-menu show" style="position: relative;">
-    <button class="dropdown-item" (click)="add()">Add {{ item.name }}</button>
-    <button class="dropdown-item" (click)="remove()">Remove {{ item.name }}</button>
-  </div>
+    <div
+      class="dropdown-menu show"
+      style="position: relative;"
+      [@menu]="_state"
+      (@menu.done)="_onAnimationDone($event)"
+    >
+      <button class="dropdown-item" (click)="add()">Add {{ item.name }}</button>
+      <button class="dropdown-item" (click)="remove()">
+        Remove {{ item.name }}
+      </button>
+    </div>
   `,
   animations: [
     trigger('menu', [
       state('enter', style({ opacity: 1 })),
       state('exit, void', style({ opacity: 0 })),
-      transition('* => *', animate(250)),
+      transition('* => *', animate(100)),
     ]),
   ],
-  host: {
-    '[@menu]': '_state',
-    '(@menu.done)': '_onAnimationDone($event)',
-  },
 })
 export class MultipleMenuComponent extends MenuComponent {
   item: any;
