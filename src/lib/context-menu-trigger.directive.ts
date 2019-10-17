@@ -7,10 +7,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import {Subscription} from 'rxjs';
-
-import {ContextMenuService, ActiveContextMenu} from './context-menu.service';
+import { ContextMenuService, ActiveContextMenu } from './context-menu.service';
 
 @Directive({
   selector: '[contextMenuTrigger]',
@@ -37,7 +36,7 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
       event: $event,
       preventOpen: () => {
         preventOpen = true;
-      }
+      },
     });
 
     if (preventOpen) {
@@ -74,11 +73,10 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
     clearTimeout(this.mouseDownTimeoutId);
   }
 
-  constructor(private contextMenuService: ContextMenuService) {
-  }
+  constructor(private contextMenuService: ContextMenuService) {}
 
   ngOnInit() {
-    this.sub = this.menuClose.subscribe(() => this.visible = false);
+    this.sub = this.menuClose.subscribe(() => (this.visible = false));
   }
 
   ngOnDestroy() {
