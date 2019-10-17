@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 
-import {MultipleMenuComponent} from './multiple-menu.component';
+import { MultipleMenuComponent } from './multiple-menu.component';
 
 @Component({
   selector: 'simple-component',
   template: `
     <div class="mb-3 d-flex flex-row justify-content-around bd-highlight">
-      <div *ngFor="let item of items"
-           class="p-3 p-md-4 p-lg-5 mr-1 bd-highlight bg-light border rounded target"
-           [contextMenuTrigger]="menu"
-           [menuContext]="item"
-           (beforeOpen)="onBeforeOpen($event)"
-           (menuAction)="handleClose($event)">
+      <div
+        *ngFor="let item of items"
+        class="p-3 p-md-4 p-lg-5 mr-1 bd-highlight bg-light border rounded target"
+        [contextMenuTrigger]="menu"
+        [menuContext]="item"
+        (beforeOpen)="onBeforeOpen($event)"
+        (menuAction)="handleClose($event)"
+      >
         {{ item.name }} ({{ item.count }})
       </div>
     </div>
@@ -22,9 +24,9 @@ export class MultipleComponent {
   messages: string[] = [];
   menu = MultipleMenuComponent;
   items = [
-    {name: 'banana', count: 0},
-    {name: 'apple', count: 0},
-    {name: 'orange', count: 0},
+    { name: 'banana', count: 0 },
+    { name: 'apple', count: 0 },
+    { name: 'orange', count: 0 },
   ];
   handleClose(msg: string) {
     this.messages.unshift(msg);
@@ -32,7 +34,7 @@ export class MultipleComponent {
   }
 
   onBeforeOpen($event: any) {
-    const {menuContext, preventOpen} = $event;
+    const { menuContext, preventOpen } = $event;
     if (menuContext.name === 'orange') {
       preventOpen();
     }
