@@ -7,7 +7,6 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-
 import { Subscription } from 'rxjs';
 
 import { ContextMenuService, ActiveContextMenu } from './context-menu.service';
@@ -22,6 +21,8 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
   @Input() holdToDisplay = 1000;
   @Output() menuAction = new EventEmitter<any>();
   @Output() menuClose = new EventEmitter<void>();
+  @Output() beforeOpen = new EventEmitter<any>();
+
   menu: ActiveContextMenu;
   visible = false;
   private mouseDownTimeoutId: any;
@@ -29,6 +30,19 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
 
   @HostListener('contextmenu', ['$event'])
   handleMenu($event: MouseEvent) {
+    let preventOpen = false;
+    this.beforeOpen.emit({
+      menuContext: this.menuContext,
+      event: $event,
+      preventOpen: () => {
+        preventOpen = true;
+      },
+    });
+
+    if (preventOpen) {
+      return;
+    }
+
     $event.preventDefault();
     this.menu = this.contextMenuService.show(
       $event,
@@ -62,8 +76,9 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
   constructor(private contextMenuService: ContextMenuService) {}
 
   ngOnInit() {
-    this.sub = this.menuClose.subscribe(() => this.visible = false);
+    this.sub = this.menuClose.subscribe(() => (this.visible = false));
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
