@@ -32,7 +32,7 @@ export class ContextMenuService {
   constructor(
     private overlay: Overlay,
     private scrollStrategy: ScrollStrategyOptions,
-    private _injector: Injector,
+    private injector: Injector,
   ) {}
 
   /**
@@ -148,7 +148,7 @@ export class ContextMenuService {
       isMenuHovered: new BehaviorSubject(false),
       isTriggerHovered: new BehaviorSubject(false),
     };
-    const menuInjector = new MenuInjector(t, this._injector, context);
+    const menuInjector = new MenuInjector(t, this.injector, context);
     const componentPortal = new ComponentPortal(
       menuComponent,
       undefined,

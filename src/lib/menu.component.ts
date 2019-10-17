@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, HostBinding } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 
 import { ContextMenuService } from './context-menu.service';
@@ -16,6 +16,11 @@ export class MenuComponent {
   /** set lazy to False if you do not have animations */
   lazy = true;
   closetimer: any;
+
+  constructor(
+    public menuPackage: MenuPackage,
+    public contextMenuService: ContextMenuService,
+  ) {}
 
   @HostListener('mouseover')
   handleMouseover() {
@@ -42,12 +47,8 @@ export class MenuComponent {
     this.contextMenuService.checkOutsideClick($event);
   }
 
-  constructor(
-    public menuPackage: MenuPackage,
-    public contextMenuService: ContextMenuService,
-  ) {}
-
   /** Callback that is invoked when the menu animation completes. */
+  @HostListener('@menu.done', ['$event'])
   _onAnimationDone(event: AnimationEvent) {
     this._animationDone.next(event);
   }

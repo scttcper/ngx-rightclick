@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ExampleMenuComponent } from './example-menu.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +16,4 @@ export class AppComponent {
     { name: 'swag', selected: false },
     { name: 'bonus', selected: false },
   ];
-  menu = ExampleMenuComponent;
 }

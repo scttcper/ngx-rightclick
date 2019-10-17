@@ -1,16 +1,11 @@
-<div align="center">
-  <h1>ngx-rightclick</h1>
-  <br>
-  <a href="https://www.npmjs.com/package/@ctrl/ngx-rightclick">
-    <img src="https://img.shields.io/npm/v/@ctrl/ngx-rightclick.svg" alt="npm">
-  </a>
-  <br>
-  <br>
-</div>
+# ngx-rightclick
+
+[![npm](https://badge.fury.io/js/%40ctrl%2Fngx-rightclick.svg)](https://www.npmjs.org/package/@ctrl/ngx-rightclick)
+[![CircleCI](https://circleci.com/gh/TypeCtrl/ngx-rightclick.svg?style=svg)](https://circleci.com/gh/TypeCtrl/ngx-rightclick)
 
 > Context Menu Service for Angular 
 
-Demo: https://typectrl.github.io/ngx-rightclick/
+Demo: https://ngx-rightclick.netlify.com/
 
 ## Install
 if you don't already have `@angular/cdk` that needs to be installed too
