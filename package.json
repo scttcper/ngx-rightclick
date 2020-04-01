@@ -41,7 +41,7 @@
     "@angular/language-service": "9.1.0",
     "@types/jasmine": "3.5.10",
     "@types/node": "13.7.6",
-    "codelyzer": "5.2.1",
+    "codelyzer": "5.2.2",
     "fs-extra": "8.1.0",
     "jasmine-core": "3.5.0",
     "karma": "4.4.1",
