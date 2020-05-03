@@ -1,4 +1,4 @@
-import { Injector, Type, InjectionToken, InjectFlags } from '@angular/core';
+import { Injector, InjectFlags } from '@angular/core';
 
 import { ActiveContextMenuSub } from './context-menu.service';
 
