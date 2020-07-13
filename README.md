@@ -1,30 +1,44 @@
 # ngx-rightclick
 
 [![npm](https://badge.fury.io/js/%40ctrl%2Fngx-rightclick.svg)](https://www.npmjs.org/package/@ctrl/ngx-rightclick)
-[![CircleCI](https://circleci.com/gh/TypeCtrl/ngx-rightclick.svg?style=svg)](https://circleci.com/gh/TypeCtrl/ngx-rightclick)
+[![CircleCI](https://circleci.com/gh/scttcper/ngx-rightclick.svg?style=svg)](https://circleci.com/gh/scttcper/ngx-rightclick)
 
-> Context Menu Service for Angular 
+> Context Menu Service for Angular
 
-Demo: https://ngx-rightclick.netlify.com/
+Demo: https://ngx-rightclick.vercel.app
 
 ## Install
+
 if you don't already have `@angular/cdk` that needs to be installed too
+
 ```sh
 npm install @ctrl/ngx-rightclick
 ```
 
+## Dependencies
+
+Latest version available for each version of Angular
+
+| ngx-rightclick | Angular |
+| -------------- | ------- |
+| 3.0.1          | 9.x     |
+| current        | >= 10.x |
+
 ## Use
+
 Import and Add to NgModule
+
 ```ts
 import { ContextMenuModule } from '@ctrl/ngx-rightclick';
 ```
 
-Add context menu directive to element and pass the menu component to be shown. __Important__ the menu component must also be added as to entryComponents in your NgModule. [See here](https://github.com/TypeCtrl/ngx-rightclick/blob/2d9d0430e1e762e202d39dbad79da6bdaea1db23/src/app/app.module.ts#L47-L53)
+Add context menu directive to element and pass the menu component to be shown. **Important** the menu component must also be added as to entryComponents in your NgModule. [See here](https://github.com/scttcper/ngx-rightclick/blob/2d9d0430e1e762e202d39dbad79da6bdaea1db23/src/app/app.module.ts#L47-L53)
+
 ```ts
 // show.component.ts
 @Component({
   template: `
-  <div [contextMenuTrigger]="menu" (menuAction)="handleMenuAction($event)">Right Click</div>
+    <div [contextMenuTrigger]="menu" (menuAction)="handleMenuAction($event)">Right Click</div>
   `,
 })
 export class ShowComponent {
@@ -48,13 +62,10 @@ export class SimpleMenuComponent extends MenuComponent {
   // this module does not have animations, set lazy false
   lazy = false;
 
-  constructor(
-    public menuPackage: MenuPackage,
-    public contextMenuService: ContextMenuService,
-  ) {
+  constructor(public menuPackage: MenuPackage, public contextMenuService: ContextMenuService) {
     super(menuPackage, contextMenuService);
     // grab any required menu context passed via menuContext input
-    console.log(menuPackage.context)
+    console.log(menuPackage.context);
   }
 
   handleClick() {
@@ -65,6 +76,7 @@ export class SimpleMenuComponent extends MenuComponent {
 ```
 
 Last step add css somewhere in your global styles
+
 ```css
 .cdk-overlay-container {
   position: fixed;
@@ -102,15 +114,17 @@ Last step add css somewhere in your global styles
 | menuAction | `any`  | whatever is passed to `ContextMenuService.closeAll` |
 | menuClose  | `void` | triggered whenever a menu or submenu is closed      |
 
-
 ## Submenu
-Use the `contextSubmenuTrigger` directive as you would the contextMenuTrigger inside your menu. 
+
+Use the `contextSubmenuTrigger` directive as you would the contextMenuTrigger inside your menu.
 
 ## Other Options
+
 [ngx-contextmenu](https://github.com/isaacplmann/ngx-contextmenu)  
 Find the Angular Component of your dreams on [angular.parts](https://angular.parts/)
 
 ## License
+
 MIT
 
 ---

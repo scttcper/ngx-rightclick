@@ -44,7 +44,7 @@ export class ContextMenuService {
    */
   show(
     $event: MouseEvent,
-    menuComponent,
+    menuComponent: any,
     context: any,
     menuClose: EventEmitter<any>,
     menuAction: EventEmitter<any>,
@@ -145,8 +145,8 @@ export class ContextMenuService {
     const t: ActiveContextMenuSub = {
       submenu,
       id: this.id++,
-      isMenuHovered: new BehaviorSubject(false),
-      isTriggerHovered: new BehaviorSubject(false),
+      isMenuHovered: new BehaviorSubject<boolean>(false),
+      isTriggerHovered: new BehaviorSubject<boolean>(false),
     };
     const menuInjector = new MenuInjector(t, this.injector, context);
     const componentPortal = new ComponentPortal(

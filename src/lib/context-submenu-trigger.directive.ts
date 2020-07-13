@@ -17,7 +17,7 @@ export class ContextSubmenuTriggerDirective implements OnDestroy {
   @Input() menuContext?: any;
   @Output() menuAction = new EventEmitter<any>();
   @Output() menuClose = new EventEmitter<void>();
-  menu: ActiveContextMenu;
+  menu?: ActiveContextMenu;
   opentimer: any;
   closetimer: any;
   visible = false;

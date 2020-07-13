@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
+import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -38,7 +38,7 @@ const routes: Routes = [
     BrowserModule,
     ContextMenuModule,
     BrowserAnimationsModule,
-    MdoButtonModule,
+    GhButtonModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   bootstrap: [AppComponent],

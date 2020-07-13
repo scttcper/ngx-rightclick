@@ -23,10 +23,10 @@ export class ContextMenuTriggerDirective implements OnDestroy, OnInit {
   @Output() menuClose = new EventEmitter<void>();
   @Output() beforeOpen = new EventEmitter<any>();
 
-  menu: ActiveContextMenu;
+  menu?: ActiveContextMenu;
   visible = false;
   private mouseDownTimeoutId: any;
-  private sub: Subscription;
+  private sub!: Subscription;
 
   @HostListener('contextmenu', ['$event'])
   handleMenu($event: MouseEvent) {

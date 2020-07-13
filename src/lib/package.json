@@ -7,14 +7,13 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/core": ">=9.0.0-0",
-    "@angular/cdk": ">=9.0.0-0"
+    "@angular/core": ">=10.0.0-0",
+    "@angular/cdk": ">=10.0.0-0"
   },
   "author": "Scott Cooper <scttcper@gmail.com> (https://github.com/scttcper)",
-  "repository": "TypeCtrl/ngx-rightclick",
-  "homepage": "https://github.com/TypeCtrl/ngx-rightclick",
+  "repository": "scttcper/ngx-rightclick",
+  "homepage": "https://ngx-rightclick.vercel.app",
   "license": "MIT",
-  "bugs": "https://github.com/TypeCtrl/ngx-rightclick/issues",
   "keywords": ["ngx", "contextmenu", "rightclick", "menu", "context", "angular"],
   "ngPackage": {
     "lib": {
