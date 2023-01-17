@@ -39,7 +39,7 @@ const routes: Routes = [
         ContextMenuModule,
         BrowserAnimationsModule,
         GhButtonModule,
-        RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot(routes, { useHash: true }),
     ],
     bootstrap: [AppComponent]
 })
