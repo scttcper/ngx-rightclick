@@ -106,6 +106,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-rightclick"
+    }
+  }
 }
