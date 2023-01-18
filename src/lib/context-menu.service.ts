@@ -55,14 +55,7 @@ export class ContextMenuService {
     if (!submenu) {
       this.closeAll();
       target = {
-        getBoundingClientRect: (): ClientRect => ({
-          bottom: $event.clientY,
-          height: 0,
-          left: $event.clientX,
-          right: $event.clientX,
-          top: $event.clientY,
-          width: 0,
-        }),
+        getBoundingClientRect: (): DOMRect => new DOMRect($event.clientX, $event.clientY, 0, 0)
       };
     } else {
       // close other submenus

@@ -23,31 +23,24 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SimpleComponent,
-    SimpleMenuComponent,
-    AnimatedMenuComponent,
-    MultipleMenuComponent,
-    MultipleComponent,
-    SubmenuComponent,
-    SubmenuMenuComponent,
-    SubSubmenuMenuComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ContextMenuModule,
-    BrowserAnimationsModule,
-    GhButtonModule,
-    RouterModule.forRoot(routes, { useHash: true }),
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    SimpleMenuComponent,
-    AnimatedMenuComponent,
-    MultipleMenuComponent,
-    SubmenuMenuComponent,
-    SubSubmenuMenuComponent,
-  ],
+    declarations: [
+        AppComponent,
+        SimpleComponent,
+        SimpleMenuComponent,
+        AnimatedMenuComponent,
+        MultipleMenuComponent,
+        MultipleComponent,
+        SubmenuComponent,
+        SubmenuMenuComponent,
+        SubSubmenuMenuComponent,
+    ],
+    imports: [
+        BrowserModule,
+        ContextMenuModule,
+        BrowserAnimationsModule,
+        GhButtonModule,
+        RouterModule.forRoot(routes, { useHash: true }),
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Injector, InjectFlags } from '@angular/core';
+import { Injector } from '@angular/core';
 
 import { ActiveContextMenuSub } from './context-menu.service';
 
@@ -16,7 +16,7 @@ export class MenuInjector implements Injector {
     this.menuContext = new MenuPackage(activeContextMenu, context);
   }
 
-  get<T>(token: any, notFoundValue?: T, flags?: InjectFlags): T | MenuPackage {
+  get<T>(token: any, notFoundValue?: T, flags?: any): T | MenuPackage {
     if (token === MenuPackage) {
       return this.menuContext;
     }

@@ -22,7 +22,8 @@ Latest version available for each version of Angular
 | ngx-rightclick | Angular |
 | -------------- | ------- |
 | 3.0.1          | 9.x     |
-| current        | >= 10.x |
+| 4.0.0          | 10 < 15 |
+| 15.0.0         | >= 15.* |
 
 ## Use
 
