@@ -1,4 +1,4 @@
-import { Component, HostListener, HostBinding } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 
 import { ContextMenuService } from './context-menu.service';
