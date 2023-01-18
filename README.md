@@ -127,8 +127,3 @@ Find the Angular Component of your dreams on [angular.parts](https://angular.par
 ## License
 
 MIT
-
----
-
-> GitHub [@scttcper](https://github.com/scttcper) &nbsp;&middot;&nbsp;
-> Twitter [@scttcper](https://twitter.com/scttcper)
